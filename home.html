@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/helper.js"></script>
+</head>
+<body>
+<div id="container-fluid">
+
+    <div class="header">
+        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-6">.col-md-6</div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <input type="button" class="btn btn-primary" id="select_and_send" value="浏览" onclick="UploadFile()">
+            <form action="http://localhost:8081/uploadfile" enctype="multipart/form-data" method="POST" id="upload">
+                <input class="btn btn-primary" type="file" name="file" id="select_file" style="display: none">
+                <input class="btn btn-default" type="submit" id="send_file" style="display: none">
+            </form>
+        </div>
+        <div class="col-md-5">.col-md-5</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-6">.col-md-6</div>
+    </div>
+
+    <div id="footer" style="background-color:#EEEEEE;clear:both;text-align:center;">
+        版权 © runoob.com
+    </div>
+
+</div>
+
+</body>
+</html>
