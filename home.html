@@ -65,7 +65,7 @@
           <div class="col-md-5">
             <input type="button" class="btn btn-primary btn-lg" id="select_and_send" value="传输文件" onclick="UploadFile()">
 <!--            todo-->
-            <form id="upload" onsubmit="return saveReport()">
+            <form enctype="multipart/form-data" id="upload" onsubmit="return saveReport()">
               <input class="btn btn-primary" type="file" name="file" id="select_file" style="display: none">
               <input class="btn btn-default" type="submit" id="send_file" style="display: none">
             </form>

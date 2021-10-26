@@ -7,45 +7,21 @@ function UploadFile() {
     }
 }
 
-// todo
 function saveReport() {
-    // let options = {
-    //     type: 'POST',
-    //     dataType: 'json',
-    //     success: function (responseText, statusText, xhr, $form) {
-    //         alert(responseText.pickup_code)
-    //     },
-    //     complete: function (responseText) {
-    //         alert(responseText.pickup_code)
-    //     },
-    //     clearForm: true
-    // }
-    htmlobj=$.ajax({
+    $.ajax({
         url: "http://localhost:8081/uploadfile",
         type: "POST",
         dataType: 'json',
-        complete: function (responseText) {
-            alert(responseText.pickup_code)
-            console.log(responseText)
+        complete: function (rsp) {
+            let json = JSON.parse(rsp.responseText)
+            console.log(json)
+            alert("文件上传成功， 取件码为：" + json["pickup_code"])
         },
-        success: function (responseText) {
-            // alert(responseText.pickup_code)
-            console.log(responseText)
-        },
-        contentType: "multipart/form-data;"
+        cache: false,
+        data: new FormData($('#upload')[0]),
+        processData: false,
+        contentType: false,
         // contentType: "multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW;",
     });
-
-    // let xmlhttp;
-    // if (window.XMLHttpRequest) {
-    //     xmlhttp = new XMLHttpRequest();
-    // } else {
-    //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    // }
-    // xmlhttp.open("POST", "", true)
-    // console.log(xmlhttp.responseText)
-
-    console.log("111")
-    console.log(htmlobj.responseText)
     return false;
 }

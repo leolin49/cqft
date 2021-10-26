@@ -54,6 +54,10 @@ func (this *FfctManager) RegisterPostUploadFile() {
 			context.Redirect(http.StatusTemporaryRedirect, "localhost:8081/")
 			return
 		}
+		_, err := context.MultipartForm()
+		if err != nil {
+			log.Println(err.Error())
+		}
 		file, err := context.FormFile("file")
 		if err != nil {
 			log.Println(err.Error())
@@ -69,8 +73,10 @@ func (this *FfctManager) RegisterPostUploadFile() {
 			context.String(http.StatusServiceUnavailable, err.Error())
 			return
 		}
+		code := RandCode()
 		data := map[string]interface{}{
-			"pickuo_code": RandCode(),
+			"status":      200,
+			"pickup_code": code,
 		}
 
 		context.JSON(http.StatusOK, data)
