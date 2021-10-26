@@ -1,40 +1,161 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>菜鸟教程(runoob.com)</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/helper.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/favicon.ico">
+  <link rel="canonical" href="https://getbootstrap.com/docs/3.4/examples/cover/">
+
+  <title>Cover Template for Bootstrap</title>
+
+  <script type="text/javascript" src="js/helper.js"></script>
+  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/examples/cover/cover.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/assets/js/ie-emulation-modes-warning.js"></script>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
+
 <body>
-<div id="container-fluid">
 
-    <div class="header">
-        <div class="col-md-4">.col-md-4</div>
-        <div class="col-md-6">.col-md-6</div>
-    </div>
-    <div class="row">
-        <div class="col-md-5">
-            <input type="button" class="btn btn-primary" id="select_and_send" value="浏览" onclick="UploadFile()">
-            <form action="http://localhost:8081/uploadfile" enctype="multipart/form-data" method="POST" id="upload">
-                <input class="btn btn-primary" type="file" name="file" id="select_file" style="display: none">
-                <input class="btn btn-default" type="submit" id="send_file" style="display: none">
-            </form>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">Cover</h3>
+          <nav>
+            <ul class="nav masthead-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
         </div>
-        <div class="col-md-5">.col-md-5</div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">.col-md-4</div>
-        <div class="col-md-6">.col-md-6</div>
+      </div>
+
+      <div class="inner cover">
+        <h1 class="cover-heading">Cover your page.</h1>
+        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <p class="lead">
+<!--          <a href="#" class="btn btn-lg btn-default">Learn more</a>-->
+        <div class="row">
+          <div class="col-md-5">
+            <input type="button" class="btn btn-primary btn-lg" id="select_and_send" value="传输文件" onclick="UploadFile()">
+<!--            todo-->
+            <form id="upload" onsubmit="return saveReport()">
+              <input class="btn btn-primary" type="file" name="file" id="select_file" style="display: none">
+              <input class="btn btn-default" type="submit" id="send_file" style="display: none">
+            </form>
+          </div>
+          <div class=".col-md-5 .col-md-offset-3">
+            <input type="button" class="btn btn-primary btn-lg" id="recv" value="接受文件" data-toggle="modal" data-target="#pickupDialog">
+          </div>
+        </div>
+
+        </p>
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </div>
+
+      <div class="modal fade" tabindex="-1" id="pickup_code_dialog" role="dialog" aria-hidden="true">
+        <div class="modal dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+              </button>
+              <h4 class="modal-title" id="myModalLabel1">登录提示：</h4>
+            </div>
+            <div class="modal-body">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon3">取件码：</span>
+                <input type="text" class="input-sm" id="pickup_code_input" aria-describedby="basic-addon3" placeholder="admin" name="pickup_code">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <form action="http://localhost:8081/recvfile" enctype="multipart/form-data" method="POST" id="recvform">
+                <input class="btn btn-default" type="submit" id="recv_file" style="display: none">
+              </form>
+              <input type="button" class="btn btn-primary" id="pickupCodeYes" onclick="RecvFile()">确定</input>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模态框（Modal） -->
+      <div class="modal fade" id="pickupDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                &times;
+              </button>
+              <h1 class="modal-title" id="myModalLabel">
+                输入取件码以下载文件
+              </h1>
+            </div>
+            <div class="modal-body">
+              <div class="input-group input-group-lg">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">
+                  <span class="glyphicon glyphicon-cloud-download"></span>
+                  </button>
+                </span>
+<!--                <span class="input-group-addon" id="sizing-addon1">-->
+<!--                  <span class="glyphicon glyphicon-cloud-download"></span>-->
+<!--                </span>-->
+                <input type="text" class="form-control" placeholder="4位取件码" aria-describedby="sizing-addon1">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn btn-primary btn-lg">确定</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+      </div>
+
     </div>
 
-    <div id="footer" style="background-color:#EEEEEE;clear:both;text-align:center;">
-        版权 © runoob.com
-    </div>
+  </div>
 
 </div>
 
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
