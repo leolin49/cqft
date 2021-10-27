@@ -2,6 +2,7 @@ package main
 
 import (
 	"math/rand"
+	"os"
 	"strconv"
 	"time"
 )
@@ -23,4 +24,24 @@ func RandBetween(min, max int64) int64 {
 
 func RandCode() string {
 	return strconv.FormatInt(RandBetween(1000, 9999), 10)
+}
+
+func File2Bytes(path string) ([]byte, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	stats, err := file.Stat()
+	if err != nil {
+		return nil, err
+	}
+
+	data := make([]byte, stats.Size())
+	_, err = file.Read(data)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
 }

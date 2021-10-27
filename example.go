@@ -11,7 +11,13 @@ type FfctManager struct {
 	address string
 	engine  *gin.Engine
 	taskMap map[string]*TcpTask
-	fileMap map[string]string
+	fileMap map[string]*FileMgr
+}
+
+type FileMgr struct {
+	name string
+	path string
+	size int64
 }
 
 type TcpTask struct {
@@ -29,6 +35,7 @@ func (this *FfctManager) Init(e *gin.Engine) {
 	this.engine = e
 	this.LoadStaticFile()
 	this.taskMap = make(map[string]*TcpTask)
+	this.fileMap = make(map[string]*FileMgr)
 	this.address = fmt.Sprintf("%s:%s", ConfigMgr_GetMe().global.ServerIp, ConfigMgr_GetMe().global.ServerPort)
 }
 
@@ -74,21 +81,39 @@ func (this *FfctManager) RegisterPostUploadFile() {
 			return
 		}
 		code := RandCode()
-		data := map[string]interface{}{
+		this.fileMap[code] = &FileMgr{
+			name: file.Filename,
+			path: cfg.FilePath + file.Filename,
+			size: file.Size,
+		}
+		log.Println(this.fileMap)
+
+		context.JSON(http.StatusOK, gin.H{
 			"status":      200,
 			"pickup_code": code,
-		}
-
-		context.JSON(http.StatusOK, data)
+		})
 		//context.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})
 }
 
 func (this *FfctManager) RegisterPostRecvFile() {
-	this.engine.POST("/recvfile", func(context *gin.Context) {
-		code := context.PostForm("puckup_code")
-		if path, ok := this.fileMap[code]; ok {
-			_ = path
+	this.engine.POST("/downloadfile", func(context *gin.Context) {
+		//log.Println(context.PostForm("test"))
+		code := context.PostForm("code")
+		log.Println("download file by code : ", code)
+		if f, ok := this.fileMap[code]; ok {
+			context.Header("Content-Type", "application/octet-stream")
+			context.Header("Content-Disposition", "attachment;filename="+f.name)
+			context.Header("Content-Transfer-Encoding", "binary")
+			context.File(f.path)
+			return
+
+		} else if f == nil {
+			log.Println("file pointer is nil")
+			return
+		} else {
+			log.Println("no this file:", f.path)
+			return
 		}
 	})
 }
@@ -101,7 +126,7 @@ func (this *FfctManager) RegisterHomePage() {
 		})
 		ipstr := context.ClientIP()
 		this.taskMap[ipstr] = &TcpTask{ip: ipstr}
-		log.Println(ipstr)
+		//log.Println(ipstr)
 	})
 }
 
@@ -109,4 +134,5 @@ func (this *FfctManager) StartHttpServe() {
 	this.RegisterHomePage()
 	this.RegisterGetPing()
 	this.RegisterPostUploadFile()
+	this.RegisterPostRecvFile()
 }
