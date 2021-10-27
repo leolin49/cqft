@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"os"
 )
 
 type FfctManager struct {
@@ -34,9 +35,21 @@ func main() {
 func (this *FfctManager) Init(e *gin.Engine) {
 	this.engine = e
 	this.LoadStaticFile()
+	this.MakeCacheDir()
 	this.taskMap = make(map[string]*TcpTask)
 	this.fileMap = make(map[string]*FileMgr)
 	this.address = fmt.Sprintf("%s:%s", ConfigMgr_GetMe().global.ServerIp, ConfigMgr_GetMe().global.ServerPort)
+}
+
+func (this *FfctManager) MakeCacheDir() {
+	path := ConfigMgr_GetMe().global.FilePath
+	if !IsPathExists(path) {
+		err := os.Mkdir(path, os.ModePerm)
+		if err != nil {
+			log.Println(err.Error())
+			return
+		}
+	}
 }
 
 func (this *FfctManager) LoadStaticFile() {
