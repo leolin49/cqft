@@ -56,34 +56,6 @@ function saveReport() {
 //     });
 // });
 
-// $(function (){
-//     console.log("1111")
-//     $("#download_button").click(function () {
-//         $.post("http://localhost:8081/downloadfile", {
-//             code: $("#pickup_code").val(),
-//         }, {
-//             responseType: 'blob'
-//         }).then(function (res){
-//             let blob = res.data
-//             let reader = new FileReader()
-//             reader.readAsDataURL(blob)
-//             reader.onload = function (e) {
-//                 let a = document.createElement('a');
-//                 let fileName = res.headers["content-disposition"].split("=")
-//                 console.log(fileName)
-//                 fileName = fileName[fileName.length - 1]
-//                 console.log(fileName)
-//                 fileName = fileName.replace(/"/g, "")
-//                 a.download = fileName
-//                 a.href = e.target.result
-//                 document.body.appendChild(a)
-//                 a.click()
-//                 document.body.removeChild(a)
-//             }
-//         })
-//         $("#pickupDialog").hide()
-//     });
-// })
 
 $(function (){
     $("#download_button").click(function () {

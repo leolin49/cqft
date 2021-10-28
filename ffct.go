@@ -15,25 +15,8 @@ type FfctManager struct {
 	fileMap map[string]*FileMgr
 }
 
-type FileMgr struct {
-	name string
-	path string
-	size int64
-}
-
-type TcpTask struct {
-	ip string
-}
-
-func main() {
-	ffct := &FfctManager{}
-	ffct.Init(gin.Default())
-	ffct.StartHttpServe()
-	ffct.engine.Run(ffct.address)
-}
-
-func (this *FfctManager) Init(e *gin.Engine) {
-	this.engine = e
+func (this *FfctManager) Init() {
+	this.engine = gin.Default()
 	this.LoadStaticFile()
 	this.MakeCacheDir()
 	this.taskMap = make(map[string]*TcpTask)
@@ -66,7 +49,7 @@ func (this *FfctManager) RegisterGetPing() {
 }
 
 func (this *FfctManager) RegisterPostUploadFile() {
-	this.engine.MaxMultipartMemory = 8 << 20 // 8MiB
+	this.engine.MaxMultipartMemory = 32 << 20 // 8MiB
 	cfg := ConfigMgr_GetMe().global
 	this.engine.POST("/uploadfile", func(context *gin.Context) {
 		ipstr := context.ClientIP()
