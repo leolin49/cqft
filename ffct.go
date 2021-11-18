@@ -36,9 +36,10 @@ func (this *FfctManager) MakeCacheDir() {
 }
 
 func (this *FfctManager) LoadStaticFile() {
-	this.engine.StaticFile("js/helper.js", "./js/helper.js")
-	this.engine.StaticFile("js/time.js", "./js/time.js")
-	this.engine.StaticFile("js/jquery-3.6.0.js", "./js/jquery-3.6.0.js")
+	//this.engine.StaticFile("js/helper.js", "./js/helper.js")
+	//this.engine.StaticFile("js/time.js", "./js/time.js")
+	//this.engine.StaticFile("js/jquery-3.6.0.js", "./js/jquery-3.6.0.js")
+	this.engine.Static("/js", "./js")
 }
 
 func (this *FfctManager) RegisterGetPing() {
