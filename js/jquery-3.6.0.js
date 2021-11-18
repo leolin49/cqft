@@ -1381,8 +1381,7 @@
 
                         // Support: Firefox <=3.6 - 5 only
                         // Old Firefox doesn't throw on a badly-escaped identifier.
-                        // todo
-                        // el.querySelectorAll( "\\\f" );
+                        el.querySelectorAll( "\\\f" );
                         rbuggyQSA.push( "[\\r\\n\\f]" );
                     } );
 
@@ -1417,8 +1416,7 @@
 
                         // Support: Opera 10 - 11 only
                         // Opera 10-11 does not throw on post-comma invalid pseudos
-                        // todo
-                        // el.querySelectorAll( "*,:x" );
+                        el.querySelectorAll( "*,:x" );
                         rbuggyQSA.push( ",.*:" );
                     } );
                 }

@@ -12,8 +12,11 @@
 
   <title>Cover Template for Bootstrap</title>
 
-  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-  <script type="text/javascript" src="js/helper.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="../js/helper.js"></script>
+  <script type="text/javascript" src="../js/time.js"></script>
+
+  <script src="https://unpkg.com/vue@next"></script>
 
   <!-- Bootstrap core CSS -->
   <link href="https://cdn.jsdelivr.net/npm/@bootcss/v3.bootcss.com@1.0.17/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,11 +42,10 @@
 <body>
 
 <div class="site-wrapper">
-
   <div class="site-wrapper-inner">
-
     <div class="cover-container">
 
+<!--      头部栏-->
       <div class="masthead clearfix">
         <div class="inner">
           <h3 class="masthead-brand">Cover</h3>
@@ -58,60 +60,59 @@
       </div>
 
       <div class="inner cover">
-        <h1 class="cover-heading">Cover your page.</h1>
-        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-        <p class="lead">
-<!--          <a href="#" class="btn btn-lg btn-default">Learn more</a>-->
-        <div class="row">
-          <div class="col-md-5">
-            <input type="button" class="btn btn-primary btn-lg" id="select_and_send" value="Upload" onclick="UploadFile2()">
-<!--            todo-->
-            <form enctype="multipart/form-data" id="upload" onsubmit="return saveReport()">
-              <input class="btn btn-primary" type="file" name="file" id="select_file" style="display: none">
-              <input class="btn btn-default" type="submit" id="send_file" style="display: none">
-            </form>
-          </div>
-          <div class=".col-md-5 .col-md-offset-3">
-            <input type="button" class="btn btn-primary btn-lg" id="recv" value="Download" data-toggle="modal" data-target="#pickupDialog">
-          </div>
-        </div>
 
+        <h1 class="cover-heading">Welcome</h1>
+        <h1 class="cover-heading"><span id="nowTime"></span></h1>
+
+<!--        搜索框-->
+        <h1 class="cover-heading">
+          <div class="row" style="text-align: center">
+<!--            <div class="col-md-5" style="text-align: center">-->
+              <div class="input-group input-group-lg">
+                <input type="text" class="form-control" aria-label="..." placeholder="search for" id="search-input" onkeydown="SearchEnter(event)">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Baidu <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Baidu</a></li>
+                    <li><a href="#">Google</a></li>
+                    <li><a href="#">Bing</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </div><!-- /btn-group -->
+              </div><!-- /input-group -->
+<!--            </div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
+          </div>
+        </h1>
+
+        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+
+        <p class="lead">
+          <div class="row">
+            <div class="col-md-5">
+              <input type="button" class="btn btn-primary btn-lg" id="select_and_send" value="Upload" onclick="UploadFile()">
+  <!--            todo-->
+              <form enctype="multipart/form-data" id="upload" onsubmit="return saveReport()">
+                <input class="btn btn-primary" type="file" name="file" id="select_file" style="display: none">
+                <input class="btn btn-default" type="submit" id="send_file" style="display: none">
+              </form>
+            </div>
+            <div class=".col-md-5 .col-md-offset-3">
+              <input type="button" class="btn btn-primary btn-lg" id="recv" value="Download" data-toggle="modal" data-target="#pickupDialog">
+            </div>
+          </div>
         </p>
+
       </div>
 
+<!--      页脚-->
       <div class="mastfoot">
         <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+          <p>File Faster Convenient Transport Base <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@leolin49</a>.</p>
         </div>
       </div>
 
-<!--      <div class="modal fade" tabindex="-1" id="pickup_code_dialog" role="dialog" aria-hidden="true">-->
-<!--        <div class="modal dialog">-->
-<!--          <div class="modal-content">-->
-<!--            <div class="modal-header">-->
-<!--              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
-<!--                ×-->
-<!--              </button>-->
-<!--              <h4 class="modal-title" id="myModalLabel1">登录提示：</h4>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--              <div class="input-group">-->
-<!--                <span class="input-group-addon" id="basic-addon3">取件码：</span>-->
-<!--                <input type="text" class="input-sm" id="pickup_code_input" aria-describedby="basic-addon3" placeholder="admin" name="pickup_code">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-<!--              <form action="http://localhost:8081/recvfile" enctype="multipart/form-data" method="POST" id="recvform">-->
-<!--                <input class="btn btn-default" type="submit" id="recv_file" style="display: none">-->
-<!--              </form>-->
-<!--              <input type="button" class="btn btn-primary" id="pickupCodeYes" onclick="RecvFile()">确定</input>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-      <!-- 模态框（Modal） -->
+<!--      模态框（Modal）-->
       <div class="modal fade" id="pickupDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -130,9 +131,6 @@
                   <span class="glyphicon glyphicon-cloud-download"></span>
                   </button>
                 </span>
-<!--                <span class="input-group-addon" id="sizing-addon1">-->
-<!--                  <span class="glyphicon glyphicon-cloud-download"></span>-->
-<!--                </span>-->
                 <input type="text" class="form-control" id="pickup_code" placeholder="4位取件码" aria-describedby="sizing-addon1">
               </div>
             </div>

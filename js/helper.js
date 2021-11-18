@@ -1,6 +1,13 @@
 const DEBUG = true
 
+$(function () {
+   alert("hello world by jquery")
+});
+
 function UploadFile() {
+    if (DEBUG) {
+        console.log("UploadFile")
+    }
     let select = $("#select_file")
     select.click()
     select.onchange = function () {
@@ -8,14 +15,14 @@ function UploadFile() {
     }
 }
 
-function UploadFile2() {
-    let input_button = document.getElementById("select_file")
-    let submit_button = document.getElementById("send_file")
-    input_button.click()
-    input_button.onchange = function () {
-        submit_button.click()
-    }
-}
+// function UploadFile2() {
+//     let input_button = document.getElementById("select_file")
+//     let submit_button = document.getElementById("send_file")
+//     input_button.click()
+//     input_button.onchange = function () {
+//         submit_button.click()
+//     }
+// }
 
 function saveReport() {
     $.ajax({
@@ -36,31 +43,11 @@ function saveReport() {
     return false;
 }
 
-// $(function (){
-//     console.log("1111")
-//     $("#download_button").click(function () {
-//         // let code = $("#pickup_code").val()
-//         console.log("download")
-//         $.post("http://localhost:8081/downloadfile",
-//             {
-//                 code: $("#pickup_code").val()
-//             },
-//             function success(data) {
-//                 let json = $.parseJSON(data)
-//                 alert(json.text)
-//             },
-//             "json"
-//         );
-//         $("#pickupDialog").hide()
-//         // todo download
-//     });
-// });
-
-
 $(function (){
     $("#download_button").click(function () {
         $.post("http://localhost:8081/downloadfile", {
             code: $("#pickup_code").val(),
+            responseType: "blob",
         }).then(function (res, status, xhr){
             if (DEBUG) {
                 console.log(res)
@@ -97,3 +84,31 @@ $(function (){
         $("#dialog_close_button").click()
     });
 })
+
+$(function () {
+    $("#download_button").click(function () {
+        let code = $("#pickup_code").val()
+        $.ajax("http://localhost:8081/downloadfile", {
+
+        })
+    })
+})
+
+function SearchEnter(event) {
+    let e = event || window.event
+    if (e.keyCode === 13) {
+        let word = $("#search-input").val()
+        window.open("https://www.baidu.com/s?wd="+word)
+    }
+}
+
+// $("#search-input").bind('keyup', function (event) {
+//     if (DEBUG) {
+//         console.log("enter word")
+//     }
+//     var e = event || window.event || arguments.callee.caller.arguments[0];
+//     if (e.keyCode === 13) {
+//         let word = $("#search-input").val()
+//         window.open("https://www.baidu.com/s?wd="+word)
+//     }
+// })

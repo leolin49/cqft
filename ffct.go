@@ -37,6 +37,7 @@ func (this *FfctManager) MakeCacheDir() {
 
 func (this *FfctManager) LoadStaticFile() {
 	this.engine.StaticFile("js/helper.js", "./js/helper.js")
+	this.engine.StaticFile("js/time.js", "./js/time.js")
 	this.engine.StaticFile("js/jquery-3.6.0.js", "./js/jquery-3.6.0.js")
 }
 
@@ -115,7 +116,7 @@ func (this *FfctManager) RegisterPostRecvFile() {
 }
 
 func (this *FfctManager) RegisterHomePage() {
-	this.engine.LoadHTMLFiles("./home.html")
+	this.engine.LoadHTMLFiles("./html/home.html")
 	this.engine.GET("/", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "home.html", gin.H{
 			"title": "Main website",
