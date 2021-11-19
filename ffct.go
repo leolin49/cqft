@@ -22,6 +22,7 @@ func (this *FfctManager) Init() {
 	this.taskMap = make(map[string]*TcpTask)
 	this.fileMap = make(map[string]*FileMgr)
 	this.address = fmt.Sprintf("%s:%s", ConfigMgr_GetMe().global.ServerIp, ConfigMgr_GetMe().global.ServerPort)
+
 }
 
 func (this *FfctManager) MakeCacheDir() {

@@ -1,8 +1,9 @@
 const DEBUG = true
 
-$(function () {
-   alert("hello world by jquery")
-});
+// ==========================test jquery========================
+// $(function () {
+//    alert("hello world by jquery")
+// });
 
 function UploadFile() {
     if (DEBUG) {
