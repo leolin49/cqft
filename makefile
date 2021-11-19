@@ -1,4 +1,4 @@
-BINARY_NAME=ffct
+BINARY_NAME=cqft
 
 build:
 	go build -o $(PWD)/bin/$(BINARY_NAME) -v

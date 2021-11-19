@@ -30,7 +30,7 @@ function saveReport() {
         console.log("saveReport")
     }
     $.ajax({
-        url: "http://localhost:8081/uploadfile",
+        url: "./uploadfile",
         type: "POST",
         dataType: 'json',
         complete: function (rsp) {
@@ -49,7 +49,7 @@ function saveReport() {
 
 $(function (){
     $("#download_button").click(function () {
-        $.post("http://localhost:8081/downloadfile", {
+        $.post("./downloadfile", {
             code: $("#pickup_code").val(),
             responseType: "blob",
         }).then(function (res, status, xhr){
@@ -92,7 +92,7 @@ $(function (){
 $(function () {
     $("#download_button").click(function () {
         let code = $("#pickup_code").val()
-        $.ajax("http://localhost:8081/downloadfile", {
+        $.ajax("./downloadfile", {
 
         })
     })
