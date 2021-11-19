@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"gintest/glog"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -73,19 +74,19 @@ func (this *FfctManager) RegisterPostUploadFile() {
 			log.Println("file pointer is nil")
 			return
 		}
-		log.Println(file.Filename)
 		err = context.SaveUploadedFile(file, cfg.FilePath+file.Filename)
 		if err != nil {
 			context.String(http.StatusServiceUnavailable, err.Error())
 			return
 		}
 		code := RandCode()
+		glog.Infof("[new file] %s -> %s", code, file.Filename)
 		this.fileMap[code] = &FileMgr{
 			name: file.Filename,
 			path: cfg.FilePath + file.Filename,
 			size: file.Size,
 		}
-		log.Println(this.fileMap)
+		glog.Info(this.fileMap)
 
 		context.JSON(http.StatusOK, gin.H{
 			"status":      200,
@@ -99,7 +100,7 @@ func (this *FfctManager) RegisterPostRecvFile() {
 	this.engine.POST("/downloadfile", func(context *gin.Context) {
 		//log.Println(context.PostForm("test"))
 		code := context.PostForm("code")
-		log.Println("download file by code : ", code)
+		glog.Info("download file by code : ", code)
 		if f, ok := this.fileMap[code]; ok {
 			context.Header("Content-Type", "application/octet-stream")
 			context.Header("Content-Disposition", "attachment;filename="+f.name)

@@ -16,16 +16,19 @@ function UploadFile() {
     }
 }
 
-// function UploadFile2() {
-//     let input_button = document.getElementById("select_file")
-//     let submit_button = document.getElementById("send_file")
-//     input_button.click()
-//     input_button.onchange = function () {
-//         submit_button.click()
-//     }
-// }
+function UploadFile2() {
+    let input_button = document.getElementById("select_file")
+    let submit_button = document.getElementById("send_file")
+    input_button.click()
+    input_button.onchange = function () {
+        submit_button.click()
+    }
+}
 
 function saveReport() {
+    if (DEBUG) {
+        console.log("saveReport")
+    }
     $.ajax({
         url: "http://localhost:8081/uploadfile",
         type: "POST",

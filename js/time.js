@@ -27,7 +27,7 @@ function getLangDate() {
     let str1 = dataFilter(year) + "-" + dataFilter(month) + "-" + dataFilter(day);
     let str2 = dataFilter(hour) + ":" + dataFilter(minute) + ":" + dataFilter(second);
     newDate = str1 + " " + str2
-    console.log(newDate)
+    // console.log(newDate)
     document.getElementById("nowTime").innerText = newDate;
     // $("#nowTime").innerHTML = newDate;
     // setTimeout(getLangDate, 1000)
