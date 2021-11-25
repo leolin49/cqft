@@ -1,9 +1,16 @@
 const DEBUG = true
-
+var SearchBaseUrl = "https://www.baidu.com/s?wd="
 // ==========================test jquery========================
 // $(function () {
 //    alert("hello world by jquery")
 // });
+
+$(function () {
+    let idx = randomNum(1, 5)
+    // document.body.style.backgroundImage = 'url("../images/backgroundImg1.jpg")'
+    document.body.style.backgroundImage = 'url("../images/backgroundImg'+idx.toString()+'.jpg")'
+})
+
 
 function UploadFile() {
     if (DEBUG) {
@@ -102,7 +109,7 @@ function SearchEnter(event) {
     let e = event || window.event
     if (e.keyCode === 13) {
         let word = $("#search-input").val()
-        window.open("https://www.baidu.com/s?wd="+word)
+        window.open(SearchBaseUrl + word)
     }
 }
 
@@ -116,3 +123,41 @@ function SearchEnter(event) {
 //         window.open("https://www.baidu.com/s?wd="+word)
 //     }
 // })
+
+function ChangeSearchSelect(name) {
+    //<button type="button" class="btn btn-default" id="search_select">Baidu</button>
+    var btn = $("#search_select")
+    // var btn = document.getElementById("search_select")
+    btn.innerHTML = name + ' <span class=\"caret\"></span>'
+    $("#first").innerText = "你好"
+    console.log(btn.innerText)
+    // btn.remove()
+    // var s = span.text()
+    switch (name) {
+        case 'Baidu':
+            SearchBaseUrl = "https://www.baidu.com/s?wd="
+            break
+        case 'Bing':
+            SearchBaseUrl = "https://cn.bing.com/search?q="
+            break
+        case 'Sogou':
+            SearchBaseUrl = "https://www.sogou.com/web?query="
+            break
+        case 'Google':
+            SearchBaseUrl = "https://www.google.com/search?q="
+            break
+    }
+    // console.log("SearchBaseUrl: " + SearchBaseUrl)
+}
+
+function randomNum(minNum, maxNum) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.random()*minNum+1, 10)
+            break
+        case 2:
+            return parseInt(Math.random()*(maxNum-minNum+1)+minNum, 10)
+            break
+    }
+    return 0
+}

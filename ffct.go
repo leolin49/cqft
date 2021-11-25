@@ -37,11 +37,11 @@ func (this *FfctManager) MakeCacheDir() {
 	}
 }
 
+// LoadStaticFile 加载静态资源
 func (this *FfctManager) LoadStaticFile() {
-	//this.engine.StaticFile("js/helper.js", "./js/helper.js")
-	//this.engine.StaticFile("js/time.js", "./js/time.js")
-	//this.engine.StaticFile("js/jquery-3.6.0.js", "./js/jquery-3.6.0.js")
 	this.engine.Static("/js", "./js")
+	this.engine.Static("/css", "./css")
+	this.engine.Static("/images", "./images")
 }
 
 func (this *FfctManager) RegisterGetPing() {
